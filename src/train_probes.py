@@ -5,6 +5,12 @@ truncated excluded, counts logged). Selection: 5-fold stratified CV over train+v
 small val set alone is a winner's-curse machine across a 100+ config grid).
 Threshold rule (pre-committed in config): max F1 on pooled out-of-fold predictions.
 Headline position: prompt_last (anticipatory). Preprocessing fit inside each fold.
+
+Selectivity control (Hewitt & Liang 2019): labels permuted at the scenario level (each
+example = one scenario here), identical CV pipeline, C re-selected adversarially on the
+permuted data. Expected AUROC ~0.5; selectivity = real − permuted. Run for the linear
+winner cells AND the MLP (whose capacity is exactly what the control exists to catch).
+Permuted AUROC meaningfully above 0.5 in ANY probe class = leakage/pipeline-bug alarm.
 """
 
 import argparse
@@ -65,6 +71,32 @@ def make_lr(C):
                          LogisticRegression(C=C, class_weight="balanced", max_iter=2000))
 
 
+def cv_auroc(model_fn, X, y, n_folds, seed):
+    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)
+    aucs = []
+    for tr, va in skf.split(np.zeros(len(y)), y):
+        m = model_fn().fit(X[tr], y[tr])
+        aucs.append(roc_auc_score(y[va], m.predict_proba(X[va])[:, 1]))
+    return float(np.mean(aucs))
+
+
+def permuted_control(model_fns: dict, X, y, n_folds, seed, n_perms=5):
+    """Selectivity control: scenario-level label permutation, identical CV protocol.
+    model_fns: {name: callable giving a fresh fit-able model} — for the linear probe the
+    callable should re-select C adversarially (give the probe its best shot on fake labels).
+    Returns {name: {permuted_mean, permuted_sd, per_perm}}."""
+    rng = np.random.default_rng(seed)
+    out = {name: [] for name in model_fns}
+    for _ in range(n_perms):
+        yp = rng.permutation(y)  # one example per scenario -> this IS scenario-level
+        for name, fn in model_fns.items():
+            out[name].append(fn(X, yp))
+    return {name: {"permuted_mean": round(float(np.mean(v)), 4),
+                   "permuted_sd": round(float(np.std(v)), 4),
+                   "per_perm": [round(x, 4) for x in v]}
+            for name, v in out.items()}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/run.yaml")
@@ -123,6 +155,33 @@ def main():
         m.fit(Xw[tr], y[tr])
         mlp_aucs.append(roc_auc_score(y[va], m.predict_proba(Xw[va])[:, 1]))
 
+    # ---- selectivity control (permuted labels, identical protocol, adversarial C)
+    def lr_best_c(X, yy):
+        return max(cv_auroc(lambda: make_lr(C), X, yy, pr["cv_folds"], cfg["seed"])
+                   for C in pr["c_grid"])
+
+    def mlp_fn(X, yy):
+        return cv_auroc(lambda: make_pipeline(
+            StandardScaler(), MLPClassifier((pr["mlp_hidden"],), max_iter=800,
+                                            random_state=cfg["seed"])),
+            X, yy, pr["cv_folds"], cfg["seed"])
+
+    Xpl = X_all[:, ex["layers"].index(int(pl_best_key.split("/")[0])), pl_idx, :]
+    sel = {
+        "linear_overall": permuted_control({"m": lr_best_c}, Xw, y, pr["cv_folds"], cfg["seed"])["m"],
+        "linear_prompt_last": permuted_control({"m": lr_best_c}, Xpl, y, pr["cv_folds"], cfg["seed"] + 1)["m"],
+        "mlp_at_winner": permuted_control({"m": mlp_fn}, Xw, y, pr["cv_folds"], cfg["seed"] + 2)["m"],
+    }
+    sel["linear_overall"]["real"] = round(best["auroc"], 4)
+    sel["linear_prompt_last"]["real"] = pl_cells[pl_best_key]["best_auroc"]
+    sel["mlp_at_winner"]["real"] = round(float(np.mean(mlp_aucs)), 4)
+    for v in sel.values():
+        v["selectivity"] = round(v["real"] - v["permuted_mean"], 4)
+    alarm = [k for k, v in sel.items() if v["permuted_mean"] > 0.58]
+    if alarm:
+        print(f"[06] *** LEAKAGE ALARM: permuted-label AUROC > 0.58 for {alarm} — "
+              f"investigate before trusting ANY probe number ***")
+
     frozen = {}
     for name, (layer_idx, pos_idx, C) in {
         "overall": (best["layer_idx"], best["pos_idx"], best["C"]),
@@ -145,6 +204,7 @@ def main():
         "winner_prompt_last": {"cell": pl_best_key, **pl_cells[pl_best_key]},
         "mlp_at_winner": {"auroc_mean": round(float(np.mean(mlp_aucs)), 4),
                           "auroc_sd": round(float(np.std(mlp_aucs)), 4)},
+        "selectivity_control": sel,
         "population": {"n": len(rows), "syc": int(y.sum())},
     }, indent=1))
     joblib.dump(frozen, repo_path(cfg, cfg["paths"]["results"], "frozen_probe.pkl"))

@@ -11,3 +11,4 @@ results/frozen_baselines.pkl
 __pycache__/
 *.pyc
 .pytest_cache/
+.env

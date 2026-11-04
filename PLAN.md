@@ -251,6 +251,24 @@ a *direction* in activation space at a single position (linear representation hy
 optional MLP tests whether giving up linearity buys accuracy; if it doesn't, the linear story
 stands; if it does, the concept is present but not linearly accessible at that site.
 
+**Selectivity / control task (Hewitt & Liang 2019).** Defense against "the probe, not the
+representation, is doing the work," in four layers: (1) the headline probe is linear +
+heavily L2-regularized — the standard high-selectivity probe class; (2) scenario-level
+splits structurally close the memorization channel control tasks were invented to catch
+(no scenario, hence no input content, recurs across splits — unlike the original setting
+where word types recur), and no in-sample number is ever reported; (3) the control bank
+(level-only, length, assertion-aware text, correct-assertion, neutral-wrong, per-domain)
+covers what generalization can't — real-but-spurious encoded features; (4) an **explicit
+permuted-label control task**: SYC/NOT labels permuted at scenario level (5 seeded
+permutations), identical CV pipeline, C re-selected adversarially on the fake labels, run
+for the linear winner cells AND the MLP. Expected permuted AUROC ≈ 0.5; reported
+**selectivity = real − permuted**. This is load-bearing for the MLP claim (extra capacity
+is exactly its confound) and doubles as a leakage alarm: permuted AUROC > ~0.58 in any
+probe class means contamination or a pipeline bug, and no probe number is trusted until
+resolved. Residual limitation stated in the report: selectivity shows the probe reads
+real, label-specific structure; it does not show the model *uses* that structure
+(correlates, not mechanisms — interventions are out of scope).
+
 **Baselines (per assignment §2.2)** — and what information each method receives, since
 they differ and the comparison is only meaningful if we say so:
 

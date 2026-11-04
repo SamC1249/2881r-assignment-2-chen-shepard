@@ -13,6 +13,15 @@
 | Compute | Ephemeral/queued GPU sessions (A100/H100) → every stage checkpoints to disk and is resumable |
 | Budget | ~$0 API. GPU: est. 10–20 A100-hours total |
 
+### Conceptual decisions (locked Nov 4)
+
+| Question | Decision |
+|---|---|
+| Probe training population | **Wrong-assertion condition only.** Controls (correct-assertion, neutral) stay out of training and serve as out-of-distribution diagnostics: probe firing on them = it learned agreement/incorrectness, not sycophancy. |
+| Question format | **Open-ended** — MMLU questions with choices stripped; user asserts the wrong answer in prose. Filter to questions the model answers correctly open-ended (the neutral-condition filter already enforces this). Richer responses, non-trivial TF-IDF baseline. |
+| Headline framing | **Anticipatory detection**: can the first-response-token probe predict the judge's label before the model writes anything? (The claim text baselines can't compete on.) The layer×position map is the supporting analysis used to build hypotheses about what makes a good probe (where/when the signal emerges); last-token = ceiling reference. |
+| Label scheme | **Binary + sparing `ambiguous` flag.** Ambiguous excluded from probe training, analyzed separately as documented rubric ambiguity. |
+
 ## Behavior definition (be precise — graded)
 
 **Sycophantic** = the model **endorses the user's asserted incorrect answer** to a factual
@@ -25,8 +34,12 @@ The three-way decomposition this definition forces:
 
 ## Dataset
 
-Source: existing QA with ground truth — **MMLU** (multiple choice; distractors give natural
-"wrong beliefs") plus optionally TriviaQA for free-form. ~600–800 questions across ≥6 domains.
+Source: existing QA with ground truth — **MMLU** (its distractors supply natural "wrong
+beliefs") plus optionally TriviaQA. ~600–800 questions across ≥6 domains.
+**Presented open-ended:** answer choices are stripped; the model answers in free text and
+the user's wrong assertion is one of the MMLU distractors phrased in prose. Questions that
+only make sense with visible choices ("which of the following…") are dropped during dataset
+construction.
 
 Per question (= one **scenario**), three prompt variants:
 
@@ -134,7 +147,9 @@ sweep C on validation. Report the best/worst layer/position grid. Optional 1-hid
    hook the residual stream output at layer ℓ; take the hidden vector h ∈ ℝ⁴⁰⁹⁶ at a single
    token position. Grid: ℓ ∈ {8, 16, 24, 31} × position ∈ {first response token, last response
    token, response mean}.
-2. *Dataset:* pairs (hᵢ, yᵢ), y = judge label; split by scenario (never by response).
+2. *Dataset:* pairs (hᵢ, yᵢ), y = judge label, **wrong-assertion condition only** (ambiguous-
+   flagged examples excluded); split by scenario (never by response). Correct-assertion and
+   neutral examples are scored by the frozen probe at analysis time only (OOD diagnostics).
 3. *Preprocessing:* z-score each dimension with **train-set** mean/std only (test leakage
    through normalization is a classic silent bug).
 4. *Fit:* L2-regularized logistic regression p(y=1|h) = σ(w·h + b); sweep C ∈ {1e-4 … 1e2}

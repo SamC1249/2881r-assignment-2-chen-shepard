@@ -1,0 +1,13 @@
+# bulk artifacts stay local; committed exceptions keep runs reproducible
+data/*
+!data/scenarios.jsonl
+!data/prompts.jsonl
+!data/splits.json
+!data/manifest.json
+acts/
+slurm/logs/
+results/frozen_probe.pkl
+results/frozen_baselines.pkl
+__pycache__/
+*.pyc
+.pytest_cache/

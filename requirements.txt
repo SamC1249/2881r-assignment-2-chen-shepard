@@ -1,0 +1,12 @@
+# GPU sessions additionally need: vllm (pin the version you first run with; gen_hash records it)
+transformers>=4.44
+torch
+datasets
+scikit-learn
+scipy
+numpy
+pandas
+matplotlib
+pyyaml
+joblib
+pytest

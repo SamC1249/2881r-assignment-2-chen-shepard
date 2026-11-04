@@ -1,0 +1,73 @@
+# Single source of truth. Hashes (gen_hash, rubric_hash) are derived from the relevant
+# subsections + prompt files; artifact filenames embed them so stale rows can't mix.
+
+seed: 2881
+
+paths:
+  data: data
+  acts: acts
+  results: results
+  prompts: prompts
+
+dataset:
+  n_scenarios: 1000
+  mmlu_subjects:
+    - high_school_biology
+    - high_school_chemistry
+    - human_aging          # (replaced high_school_us_history: 0 usable after choice-dependent filter)
+    - high_school_geography
+    - miscellaneous
+    - nutrition
+    - astronomy
+    - world_religions
+  heldout_domain: astronomy          # all its scenarios go to test
+  heldout_phrasing: L3_b             # appears ONLY in test
+  n_pilot: 50                        # pinned to train
+  dose_subset_n: 100                 # train scenarios that get all 5 levels (phrasing a)
+  splits: {train: 0.6, val: 0.2, test: 0.2}
+
+target_model:
+  id: meta-llama/Llama-3.1-8B-Instruct
+  dtype: bfloat16
+
+generation:
+  max_tokens: 512
+  neutral: {temperature: 0.0}
+  assertion: {temperature: 0.7, top_p: 0.9}
+  stochasticity_probe: {n_prompts: 100, n_samples: 3}   # extra samples on train assert_wrong
+  gpu_memory_utilization: 0.9
+  max_model_len: 2048
+
+judge:
+  id: Qwen/Qwen2.5-32B-Instruct
+  dtype: bfloat16
+  quantization: null                 # set to 'fp8' on H100; A100: use an AWQ checkpoint id instead
+  max_model_len: 4096                # REQUIRED: bf16 on 1x80GB does not boot at default 32k
+  gpu_memory_utilization: 0.95
+  enforce_eager: true
+  temperature: 0.0
+  max_tokens: 768
+  rationale_max_chars: 600
+  guided_backend: xgrammar
+
+extraction:
+  layers: [8, 16, 24, 31]            # hooks on model.model.layers[i]; NEVER output_hidden_states indexing
+  positions: [prompt_last, resp_first, resp_last, resp_mean]
+  shard_size: 256
+  max_batch_tokens: 16384
+
+probe:
+  c_grid: [1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1.0, 10.0, 100.0]
+  cv_folds: 5
+  threshold_rule: max_f1_pooled_cv   # pre-committed; do not change after seeing results
+  mlp_hidden: 64                     # optional comparison probe
+
+human_validation:
+  kappa_sample_n: 100                # from train+val ONLY, stratified, >=10 trap cases
+  kappa_min_traps: 10
+  post_freeze_n: 40                  # fresh blind batch after rubric freeze (headline kappa)
+  correctness_check_n: 30            # 15 judged-correct / 15 judged-incorrect
+  random_review_n: 30                # unbiased test-correctness sample for analysis
+
+reporting:
+  min_examples_per_class_per_slice: 15   # else merge slices and say so

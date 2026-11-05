@@ -15,6 +15,7 @@ cd "$SLURM_SUBMIT_DIR"
 mkdir -p slurm/logs
 export HF_HOME=/n/netscratch/ullman_lab/Everyone/schen1249/hf
 MAMBA=/n/sw/Miniforge3-26.9.4-1/bin/mamba
+export PYTHONNOUSERSITE=1  # ignore broken ~/.local packages
 source /n/sw/Miniforge3-26.9.4-1/etc/profile.d/conda.sh
 
 echo "=== [1/4] create env ($(date)) ==="

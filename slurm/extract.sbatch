@@ -13,6 +13,7 @@
 
 set -euo pipefail
 cd "$SLURM_SUBMIT_DIR"
+export PYTHONNOUSERSITE=1  # ignore broken ~/.local packages
 source /n/sw/Miniforge3-26.9.4-1/etc/profile.d/conda.sh
 conda activate a2
 export HF_HOME=/n/netscratch/ullman_lab/Everyone/schen1249/hf

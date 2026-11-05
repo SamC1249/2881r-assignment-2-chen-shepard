@@ -39,11 +39,19 @@ for m in models:
 PYEOF
 
 echo "=== [2/3] download llama ($(date)) ==="
-huggingface-cli download meta-llama/Llama-3.1-8B-Instruct --exclude "original/*" > /dev/null
+python - <<'PYEOF'
+from huggingface_hub import snapshot_download
+p = snapshot_download("meta-llama/Llama-3.1-8B-Instruct", ignore_patterns=["original/*"])
+print("llama at:", p)
+PYEOF
 echo "llama done ($(date))"
 
 echo "=== [3/3] download qwen ($(date)) ==="
-huggingface-cli download Qwen/Qwen2.5-32B-Instruct > /dev/null
+python - <<'PYEOF'
+from huggingface_hub import snapshot_download
+p = snapshot_download("Qwen/Qwen2.5-32B-Instruct")
+print("qwen at:", p)
+PYEOF
 echo "qwen done ($(date))"
 
 echo "=== cache size ==="

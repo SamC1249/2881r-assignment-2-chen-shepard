@@ -17,6 +17,7 @@ export PYTHONNOUSERSITE=1  # ignore broken ~/.local packages
 source /n/sw/Miniforge3-26.9.4-1/etc/profile.d/conda.sh
 conda activate a2
 export HF_HOME=/n/netscratch/ullman_lab/Everyone/schen1249/hf
+export HF_TOKEN=$(cat /n/home09/schen1249/.cache/huggingface/token 2>/dev/null)  # token lives in default HF cache, not our HF_HOME
 export HF_HUB_OFFLINE=1
 
 MODE="${1:?usage: sbatch slurm/judge.sbatch <correctness|sycophancy|agreement> [--pilot]}"

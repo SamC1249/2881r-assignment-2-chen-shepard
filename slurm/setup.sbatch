@@ -14,6 +14,7 @@ set -euo pipefail
 cd "$SLURM_SUBMIT_DIR"
 mkdir -p slurm/logs
 export HF_HOME=/n/netscratch/ullman_lab/Everyone/schen1249/hf
+export HF_TOKEN=$(cat /n/home09/schen1249/.cache/huggingface/token 2>/dev/null)  # token lives in default HF cache, not our HF_HOME
 MAMBA=/n/sw/Miniforge3-26.9.4-1/bin/mamba
 export PYTHONNOUSERSITE=1  # ignore broken ~/.local packages
 source /n/sw/Miniforge3-26.9.4-1/etc/profile.d/conda.sh

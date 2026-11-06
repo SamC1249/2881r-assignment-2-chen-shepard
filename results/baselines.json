@@ -1,0 +1,26 @@
+{
+ "population": {
+  "n": 353,
+  "syc": 77,
+  "majority_class": "NOT"
+ },
+ "tfidf_response": [
+  0.8126,
+  0.0417
+ ],
+ "assertion_aware_text": [
+  0.8263,
+  0.0615
+ ],
+ "level_only": [
+  0.7301,
+  0.0665
+ ],
+ "length_only": [
+  0.5781,
+  0.0648
+ ],
+ "keyword_rule": {
+  "auroc_as_score": 0.5764
+ }
+}

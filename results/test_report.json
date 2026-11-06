@@ -1,0 +1,1094 @@
+{
+ "methods": {
+  "probe_overall": {
+   "all_test": {
+    "n": 178,
+    "pos": 38,
+    "auroc": 0.9631578947368421,
+    "auroc_ci95": [
+     0.9105,
+     0.9992
+    ],
+    "balanced_acc": 0.9271,
+    "confusion": [
+     [
+      138,
+      2
+     ],
+     [
+      5,
+      33
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.965,
+      "recall": 0.9857,
+      "f1": 0.9753,
+      "support": 140
+     },
+     "SYC": {
+      "precision": 0.9429,
+      "recall": 0.8684,
+      "f1": 0.9041,
+      "support": 38
+     }
+    },
+    "underpowered": false
+   },
+   "heldout_domain": {
+    "n": 72,
+    "pos": 13,
+    "auroc": 1.0,
+    "auroc_ci95": [
+     1.0,
+     1.0
+    ],
+    "balanced_acc": 1.0,
+    "confusion": [
+     [
+      59,
+      0
+     ],
+     [
+      0,
+      13
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 59
+     },
+     "SYC": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 13
+     }
+    },
+    "underpowered": true
+   },
+   "heldout_phrasing": {
+    "n": 20,
+    "pos": 2,
+    "auroc": 1.0,
+    "auroc_ci95": [
+     1.0,
+     1.0
+    ],
+    "balanced_acc": 1.0,
+    "confusion": [
+     [
+      18,
+      0
+     ],
+     [
+      0,
+      2
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 18
+     },
+     "SYC": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 2
+     }
+    },
+    "underpowered": true
+   },
+   "rest_of_test": {
+    "n": 96,
+    "pos": 24,
+    "auroc": 0.9380787037037036,
+    "auroc_ci95": [
+     0.8538,
+     0.9982
+    ],
+    "balanced_acc": 0.8819,
+    "confusion": [
+     [
+      70,
+      2
+     ],
+     [
+      5,
+      19
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.9333,
+      "recall": 0.9722,
+      "f1": 0.9524,
+      "support": 72
+     },
+     "SYC": {
+      "precision": 0.9048,
+      "recall": 0.7917,
+      "f1": 0.8444,
+      "support": 24
+     }
+    },
+    "underpowered": false
+   }
+  },
+  "probe_prompt_last": {
+   "all_test": {
+    "n": 178,
+    "pos": 38,
+    "auroc": 0.9295112781954887,
+    "auroc_ci95": [
+     0.8828,
+     0.9651
+    ],
+    "balanced_acc": 0.8209,
+    "confusion": [
+     [
+      123,
+      17
+     ],
+     [
+      9,
+      29
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.9318,
+      "recall": 0.8786,
+      "f1": 0.9044,
+      "support": 140
+     },
+     "SYC": {
+      "precision": 0.6304,
+      "recall": 0.7632,
+      "f1": 0.6905,
+      "support": 38
+     }
+    },
+    "underpowered": false
+   },
+   "heldout_domain": {
+    "n": 72,
+    "pos": 13,
+    "auroc": 0.9608865710560626,
+    "auroc_ci95": [
+     0.9097,
+     0.9948
+    ],
+    "balanced_acc": 0.8422,
+    "confusion": [
+     [
+      54,
+      5
+     ],
+     [
+      3,
+      10
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.9474,
+      "recall": 0.9153,
+      "f1": 0.931,
+      "support": 59
+     },
+     "SYC": {
+      "precision": 0.6667,
+      "recall": 0.7692,
+      "f1": 0.7143,
+      "support": 13
+     }
+    },
+    "underpowered": true
+   },
+   "heldout_phrasing": {
+    "n": 20,
+    "pos": 2,
+    "auroc": 0.9444444444444444,
+    "auroc_ci95": [
+     0.8235,
+     1.0
+    ],
+    "balanced_acc": 0.8889,
+    "confusion": [
+     [
+      14,
+      4
+     ],
+     [
+      0,
+      2
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 1.0,
+      "recall": 0.7778,
+      "f1": 0.875,
+      "support": 18
+     },
+     "SYC": {
+      "precision": 0.3333,
+      "recall": 1.0,
+      "f1": 0.5,
+      "support": 2
+     }
+    },
+    "underpowered": true
+   },
+   "rest_of_test": {
+    "n": 96,
+    "pos": 24,
+    "auroc": 0.9230324074074074,
+    "auroc_ci95": [
+     0.855,
+     0.9715
+    ],
+    "balanced_acc": 0.8125,
+    "confusion": [
+     [
+      63,
+      9
+     ],
+     [
+      6,
+      18
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.913,
+      "recall": 0.875,
+      "f1": 0.8936,
+      "support": 72
+     },
+     "SYC": {
+      "precision": 0.6667,
+      "recall": 0.75,
+      "f1": 0.7059,
+      "support": 24
+     }
+    },
+    "underpowered": false
+   }
+  },
+  "tfidf_response": {
+   "all_test": {
+    "n": 178,
+    "pos": 38,
+    "auroc": 0.837218045112782,
+    "auroc_ci95": [
+     0.7692,
+     0.8987
+    ],
+    "balanced_acc": 0.6077,
+    "confusion": [
+     [
+      137,
+      3
+     ],
+     [
+      29,
+      9
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.8253,
+      "recall": 0.9786,
+      "f1": 0.8954,
+      "support": 140
+     },
+     "SYC": {
+      "precision": 0.75,
+      "recall": 0.2368,
+      "f1": 0.36,
+      "support": 38
+     }
+    },
+    "underpowered": false
+   },
+   "heldout_domain": {
+    "n": 72,
+    "pos": 13,
+    "auroc": 0.8670143415906129,
+    "auroc_ci95": [
+     0.7566,
+     0.9557
+    ],
+    "balanced_acc": 0.6538,
+    "confusion": [
+     [
+      59,
+      0
+     ],
+     [
+      9,
+      4
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.8676,
+      "recall": 1.0,
+      "f1": 0.9291,
+      "support": 59
+     },
+     "SYC": {
+      "precision": 1.0,
+      "recall": 0.3077,
+      "f1": 0.4706,
+      "support": 13
+     }
+    },
+    "underpowered": true
+   },
+   "heldout_phrasing": {
+    "n": 20,
+    "pos": 2,
+    "auroc": 0.9444444444444444,
+    "auroc_ci95": [
+     0.8235,
+     1.0
+    ],
+    "balanced_acc": 0.7222,
+    "confusion": [
+     [
+      17,
+      1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.9444,
+      "recall": 0.9444,
+      "f1": 0.9444,
+      "support": 18
+     },
+     "SYC": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "support": 2
+     }
+    },
+    "underpowered": true
+   },
+   "rest_of_test": {
+    "n": 96,
+    "pos": 24,
+    "auroc": 0.8032407407407407,
+    "auroc_ci95": [
+     0.702,
+     0.8901
+    ],
+    "balanced_acc": 0.5903,
+    "confusion": [
+     [
+      70,
+      2
+     ],
+     [
+      19,
+      5
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.7865,
+      "recall": 0.9722,
+      "f1": 0.8696,
+      "support": 72
+     },
+     "SYC": {
+      "precision": 0.7143,
+      "recall": 0.2083,
+      "f1": 0.3226,
+      "support": 24
+     }
+    },
+    "underpowered": false
+   }
+  },
+  "assertion_aware_text": {
+   "all_test": {
+    "n": 178,
+    "pos": 38,
+    "auroc": 0.8118421052631579,
+    "auroc_ci95": [
+     0.7467,
+     0.8756
+    ],
+    "balanced_acc": 0.71,
+    "confusion": [
+     [
+      103,
+      37
+     ],
+     [
+      12,
+      26
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.8957,
+      "recall": 0.7357,
+      "f1": 0.8078,
+      "support": 140
+     },
+     "SYC": {
+      "precision": 0.4127,
+      "recall": 0.6842,
+      "f1": 0.5149,
+      "support": 38
+     }
+    },
+    "underpowered": false
+   },
+   "heldout_domain": {
+    "n": 72,
+    "pos": 13,
+    "auroc": 0.6870925684485006,
+    "auroc_ci95": [
+     0.525,
+     0.8187
+    ],
+    "balanced_acc": 0.5913,
+    "confusion": [
+     [
+      38,
+      21
+     ],
+     [
+      6,
+      7
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.8636,
+      "recall": 0.6441,
+      "f1": 0.7379,
+      "support": 59
+     },
+     "SYC": {
+      "precision": 0.25,
+      "recall": 0.5385,
+      "f1": 0.3415,
+      "support": 13
+     }
+    },
+    "underpowered": true
+   },
+   "heldout_phrasing": {
+    "n": 20,
+    "pos": 2,
+    "auroc": 0.8055555555555556,
+    "auroc_ci95": [
+     0.5789,
+     0.9474
+    ],
+    "balanced_acc": 0.6667,
+    "confusion": [
+     [
+      15,
+      3
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.9375,
+      "recall": 0.8333,
+      "f1": 0.8824,
+      "support": 18
+     },
+     "SYC": {
+      "precision": 0.25,
+      "recall": 0.5,
+      "f1": 0.3333,
+      "support": 2
+     }
+    },
+    "underpowered": true
+   },
+   "rest_of_test": {
+    "n": 96,
+    "pos": 24,
+    "auroc": 0.8813657407407409,
+    "auroc_ci95": [
+     0.8052,
+     0.9511
+    ],
+    "balanced_acc": 0.7639,
+    "confusion": [
+     [
+      56,
+      16
+     ],
+     [
+      6,
+      18
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.9032,
+      "recall": 0.7778,
+      "f1": 0.8358,
+      "support": 72
+     },
+     "SYC": {
+      "precision": 0.5294,
+      "recall": 0.75,
+      "f1": 0.6207,
+      "support": 24
+     }
+    },
+    "underpowered": false
+   }
+  },
+  "level_only": {
+   "all_test": {
+    "n": 178,
+    "pos": 38,
+    "auroc": 0.7077067669172933,
+    "auroc_ci95": [
+     0.6018,
+     0.7997
+    ],
+    "balanced_acc": 0.6323,
+    "confusion": [
+     [
+      96,
+      44
+     ],
+     [
+      16,
+      22
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.8571,
+      "recall": 0.6857,
+      "f1": 0.7619,
+      "support": 140
+     },
+     "SYC": {
+      "precision": 0.3333,
+      "recall": 0.5789,
+      "f1": 0.4231,
+      "support": 38
+     }
+    },
+    "underpowered": false
+   },
+   "heldout_domain": {
+    "n": 72,
+    "pos": 13,
+    "auroc": 0.7086049543676662,
+    "auroc_ci95": [
+     0.5264,
+     0.8741
+    ],
+    "balanced_acc": 0.5997,
+    "confusion": [
+     [
+      39,
+      20
+     ],
+     [
+      6,
+      7
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.8667,
+      "recall": 0.661,
+      "f1": 0.75,
+      "support": 59
+     },
+     "SYC": {
+      "precision": 0.2593,
+      "recall": 0.5385,
+      "f1": 0.35,
+      "support": 13
+     }
+    },
+    "underpowered": true
+   },
+   "heldout_phrasing": {
+    "n": 20,
+    "pos": 2,
+    "auroc": 0.5,
+    "auroc_ci95": [
+     0.5,
+     0.5
+    ],
+    "balanced_acc": 0.5,
+    "confusion": [
+     [
+      18,
+      0
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.9,
+      "recall": 1.0,
+      "f1": 0.9474,
+      "support": 18
+     },
+     "SYC": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+     }
+    },
+    "underpowered": true
+   },
+   "rest_of_test": {
+    "n": 96,
+    "pos": 24,
+    "auroc": 0.7063078703703705,
+    "auroc_ci95": [
+     0.5794,
+     0.8297
+    ],
+    "balanced_acc": 0.6458,
+    "confusion": [
+     [
+      48,
+      24
+     ],
+     [
+      9,
+      15
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.8421,
+      "recall": 0.6667,
+      "f1": 0.7442,
+      "support": 72
+     },
+     "SYC": {
+      "precision": 0.3846,
+      "recall": 0.625,
+      "f1": 0.4762,
+      "support": 24
+     }
+    },
+    "underpowered": false
+   }
+  },
+  "length_only": {
+   "all_test": {
+    "n": 178,
+    "pos": 38,
+    "auroc": 0.5255639097744361,
+    "auroc_ci95": [
+     0.4062,
+     0.6404
+    ],
+    "balanced_acc": 0.506,
+    "confusion": [
+     [
+      68,
+      72
+     ],
+     [
+      18,
+      20
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.7907,
+      "recall": 0.4857,
+      "f1": 0.6018,
+      "support": 140
+     },
+     "SYC": {
+      "precision": 0.2174,
+      "recall": 0.5263,
+      "f1": 0.3077,
+      "support": 38
+     }
+    },
+    "underpowered": false
+   },
+   "heldout_domain": {
+    "n": 72,
+    "pos": 13,
+    "auroc": 0.5886571056062582,
+    "auroc_ci95": [
+     0.3963,
+     0.7692
+    ],
+    "balanced_acc": 0.5743,
+    "confusion": [
+     [
+      36,
+      23
+     ],
+     [
+      6,
+      7
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.8571,
+      "recall": 0.6102,
+      "f1": 0.7129,
+      "support": 59
+     },
+     "SYC": {
+      "precision": 0.2333,
+      "recall": 0.5385,
+      "f1": 0.3256,
+      "support": 13
+     }
+    },
+    "underpowered": true
+   },
+   "heldout_phrasing": {
+    "n": 20,
+    "pos": 2,
+    "auroc": 0.16666666666666663,
+    "auroc_ci95": [
+     0.0,
+     0.3684
+    ],
+    "balanced_acc": 0.1389,
+    "confusion": [
+     [
+      5,
+      13
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.7143,
+      "recall": 0.2778,
+      "f1": 0.4,
+      "support": 18
+     },
+     "SYC": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+     }
+    },
+    "underpowered": true
+   },
+   "rest_of_test": {
+    "n": 96,
+    "pos": 24,
+    "auroc": 0.5031828703703703,
+    "auroc_ci95": [
+     0.3493,
+     0.6581
+    ],
+    "balanced_acc": 0.4861,
+    "confusion": [
+     [
+      31,
+      41
+     ],
+     [
+      11,
+      13
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.7381,
+      "recall": 0.4306,
+      "f1": 0.5439,
+      "support": 72
+     },
+     "SYC": {
+      "precision": 0.2407,
+      "recall": 0.5417,
+      "f1": 0.3333,
+      "support": 24
+     }
+    },
+    "underpowered": false
+   }
+  },
+  "majority": {
+   "all_test": {
+    "n": 178,
+    "pos": 38,
+    "auroc": 0.5,
+    "auroc_ci95": [
+     0.5,
+     0.5
+    ],
+    "balanced_acc": 0.5,
+    "confusion": [
+     [
+      140,
+      0
+     ],
+     [
+      38,
+      0
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.7865,
+      "recall": 1.0,
+      "f1": 0.8805,
+      "support": 140
+     },
+     "SYC": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 38
+     }
+    },
+    "underpowered": false
+   },
+   "heldout_domain": {
+    "n": 72,
+    "pos": 13,
+    "auroc": 0.5,
+    "auroc_ci95": [
+     0.5,
+     0.5
+    ],
+    "balanced_acc": 0.5,
+    "confusion": [
+     [
+      59,
+      0
+     ],
+     [
+      13,
+      0
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.8194,
+      "recall": 1.0,
+      "f1": 0.9008,
+      "support": 59
+     },
+     "SYC": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 13
+     }
+    },
+    "underpowered": true
+   },
+   "heldout_phrasing": {
+    "n": 20,
+    "pos": 2,
+    "auroc": 0.5,
+    "auroc_ci95": [
+     0.5,
+     0.5
+    ],
+    "balanced_acc": 0.5,
+    "confusion": [
+     [
+      18,
+      0
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.9,
+      "recall": 1.0,
+      "f1": 0.9474,
+      "support": 18
+     },
+     "SYC": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+     }
+    },
+    "underpowered": true
+   },
+   "rest_of_test": {
+    "n": 96,
+    "pos": 24,
+    "auroc": 0.5,
+    "auroc_ci95": [
+     0.5,
+     0.5
+    ],
+    "balanced_acc": 0.5,
+    "confusion": [
+     [
+      72,
+      0
+     ],
+     [
+      24,
+      0
+     ]
+    ],
+    "per_class": {
+     "NOT": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571,
+      "support": 72
+     },
+     "SYC": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 24
+     }
+    },
+    "underpowered": false
+   }
+  }
+ },
+ "paired_delta_auroc": {
+  "probe_prompt_last_minus_level_only": {
+   "delta": 0.2167,
+   "ci95": [
+    0.0835,
+    0.3398
+   ]
+  },
+  "probe_prompt_last_minus_tfidf_response": {
+   "delta": 0.1198,
+   "ci95": [
+    0.0233,
+    0.2237
+   ]
+  },
+  "probe_prompt_last_minus_assertion_aware_text": {
+   "delta": 0.0417,
+   "ci95": [
+    -0.0513,
+    0.1318
+   ]
+  },
+  "probe_prompt_last_minus_length_only": {
+   "delta": 0.4198,
+   "ci95": [
+    0.2662,
+    0.568
+   ]
+  },
+  "probe_prompt_last_minus_probe_overall": {
+   "delta": -0.015,
+   "ci95": [
+    -0.0807,
+    0.061
+   ]
+  }
+ },
+ "within_level": {
+  "probe_prompt_last": {
+   "1": 0.8863636363636364,
+   "2": 0.9166666666666666,
+   "3": 1.0,
+   "4": 0.8222222222222222,
+   "5": 0.9375
+  },
+  "probe_overall": {
+   "1": 1.0,
+   "2": 0.9375,
+   "3": 1.0,
+   "4": 0.8666666666666667,
+   "5": 0.925
+  },
+  "level_only": {
+   "1": 0.4090909090909091,
+   "2": 0.41666666666666663,
+   "3": 0.5,
+   "4": 0.7055555555555556,
+   "5": 0.6375
+  }
+ },
+ "ood": {
+  "neutral_wrong": {
+   "n": 459,
+   "probe_overall": {
+    "mean_score": 0.5529,
+    "frac_over_threshold": 0.5142
+   },
+   "probe_prompt_last": {
+    "mean_score": 0.6727,
+    "frac_over_threshold": 0.8649
+   }
+  },
+  "assert_correct": {
+   "n": 541,
+   "probe_overall": {
+    "mean_score": 0.7903,
+    "frac_over_threshold": 0.8244
+   },
+   "probe_prompt_last": {
+    "mean_score": 0.7554,
+    "frac_over_threshold": 0.8115
+   }
+  },
+  "ambiguous": {
+   "n": 4,
+   "probe_overall": {
+    "mean_score": 0.5563,
+    "frac_over_threshold": 0.75
+   },
+   "probe_prompt_last": {
+    "mean_score": 0.1575,
+    "frac_over_threshold": 0.0
+   }
+  }
+ },
+ "note": "heldout slices are qualitative robustness checks (power)"
+}

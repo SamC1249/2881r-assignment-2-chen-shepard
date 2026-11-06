@@ -1,0 +1,146 @@
+{
+ "grid": {
+  "8/prompt_last": {
+   "best_auroc": 0.7543,
+   "fold_sd": 0.0865,
+   "C": 0.001
+  },
+  "8/resp_first": {
+   "best_auroc": 0.8294,
+   "fold_sd": 0.0468,
+   "C": 0.01
+  },
+  "8/resp_last": {
+   "best_auroc": 0.9692,
+   "fold_sd": 0.0108,
+   "C": 0.001
+  },
+  "8/resp_mean": {
+   "best_auroc": 0.885,
+   "fold_sd": 0.0473,
+   "C": 100.0
+  },
+  "16/prompt_last": {
+   "best_auroc": 0.9395,
+   "fold_sd": 0.0222,
+   "C": 0.001
+  },
+  "16/resp_first": {
+   "best_auroc": 0.9223,
+   "fold_sd": 0.0395,
+   "C": 0.001
+  },
+  "16/resp_last": {
+   "best_auroc": 0.9819,
+   "fold_sd": 0.0127,
+   "C": 0.001
+  },
+  "16/resp_mean": {
+   "best_auroc": 0.919,
+   "fold_sd": 0.0471,
+   "C": 10.0
+  },
+  "24/prompt_last": {
+   "best_auroc": 0.9285,
+   "fold_sd": 0.0252,
+   "C": 0.0001
+  },
+  "24/resp_first": {
+   "best_auroc": 0.8959,
+   "fold_sd": 0.0372,
+   "C": 0.001
+  },
+  "24/resp_last": {
+   "best_auroc": 0.9817,
+   "fold_sd": 0.0205,
+   "C": 0.001
+  },
+  "24/resp_mean": {
+   "best_auroc": 0.8438,
+   "fold_sd": 0.0725,
+   "C": 100.0
+  },
+  "31/prompt_last": {
+   "best_auroc": 0.9258,
+   "fold_sd": 0.0236,
+   "C": 0.0001
+  },
+  "31/resp_first": {
+   "best_auroc": 0.8838,
+   "fold_sd": 0.0409,
+   "C": 0.001
+  },
+  "31/resp_last": {
+   "best_auroc": 0.9809,
+   "fold_sd": 0.0149,
+   "C": 1.0
+  },
+  "31/resp_mean": {
+   "best_auroc": 0.8078,
+   "fold_sd": 0.0086,
+   "C": 0.1
+  }
+ },
+ "winner_overall": {
+  "layer": 16,
+  "pos": "resp_last",
+  "C": 0.001,
+  "auroc": 0.9819480519480519,
+  "threshold": 0.5437866449356079
+ },
+ "winner_prompt_last": {
+  "cell": "16/prompt_last",
+  "best_auroc": 0.9395,
+  "fold_sd": 0.0222,
+  "C": 0.001
+ },
+ "mlp_at_winner": {
+  "auroc_mean": 0.9635,
+  "auroc_sd": 0.0362
+ },
+ "selectivity_control": {
+  "linear_overall": {
+   "permuted_mean": 0.5257,
+   "permuted_sd": 0.0535,
+   "per_perm": [
+    0.5199,
+    0.5593,
+    0.5013,
+    0.4448,
+    0.6033
+   ],
+   "real": 0.9819,
+   "selectivity": 0.4562
+  },
+  "linear_prompt_last": {
+   "permuted_mean": 0.5589,
+   "permuted_sd": 0.0388,
+   "per_perm": [
+    0.5392,
+    0.5897,
+    0.4994,
+    0.5558,
+    0.6104
+   ],
+   "real": 0.9395,
+   "selectivity": 0.3806
+  },
+  "mlp_at_winner": {
+   "permuted_mean": 0.4985,
+   "permuted_sd": 0.0123,
+   "per_perm": [
+    0.4964,
+    0.5225,
+    0.4949,
+    0.4901,
+    0.4888
+   ],
+   "real": 0.9635,
+   "selectivity": 0.465
+  }
+ },
+ "population": {
+  "n": 353,
+  "syc": 77
+ }
+}

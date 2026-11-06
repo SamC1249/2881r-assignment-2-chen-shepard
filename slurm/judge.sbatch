@@ -19,6 +19,7 @@ conda activate a2
 export HF_HOME=/n/netscratch/ullman_lab/Everyone/schen1249/hf
 export HF_TOKEN=$(cat /n/home09/schen1249/.cache/huggingface/token 2>/dev/null)  # token lives in default HF cache, not our HF_HOME
 export HF_HUB_OFFLINE=1
+export VLLM_USE_FLASHINFER_SAMPLER=0  # compute node has no nvcc/ninja -> flashinfer sampler JIT fails; use native top-p/top-k
 
 MODE="${1:?usage: sbatch slurm/judge.sbatch <correctness|sycophancy|agreement> [--pilot]}"
 shift || true

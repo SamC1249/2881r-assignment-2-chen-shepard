@@ -126,7 +126,7 @@ def main():
             buf.append(extract_batch(model, ex["layers"], batch, device, hidden_size))
         acts = np.concatenate(buf, axis=0)
         shard_file = acts_dir / f"shard_{shard_idx:04d}.npz"
-        tmp = str(shard_file) + ".tmp"
+        tmp = str(shard_file) + ".tmp.npz"  # np.savez appends .npz unless the name already ends with it
         np.savez_compressed(tmp, acts=acts,
                             row_ids=np.array([r["row_id"] for r in shard_rows]),
                             layers=np.array(ex["layers"]),

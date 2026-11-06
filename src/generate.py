@@ -60,7 +60,8 @@ def main():
 
     if args.dry_run:
         ids = tok.apply_chat_template([{"role": "user", "content": "hi"}],
-                                      add_generation_prompt=True, tokenize=True)
+                                      add_generation_prompt=True, tokenize=True,
+                                      return_dict=False)
         out = llm.generate([TokensPrompt(prompt_token_ids=ids)],
                            SamplingParams(max_tokens=1, temperature=0.0))
         print(f"[02] dry-run OK: {out[0].outputs[0].token_ids}")
@@ -74,7 +75,8 @@ def main():
     reqs, metas = [], []
     for eid, sidx in todo_items:
         p = prompts[eid]
-        ids = tok.apply_chat_template(p["messages"], add_generation_prompt=True, tokenize=True)
+        ids = tok.apply_chat_template(p["messages"], add_generation_prompt=True, tokenize=True,
+                                      return_dict=False)  # transformers v5 defaults to BatchEncoding dict
         reqs.append(TokensPrompt(prompt_token_ids=ids))
         metas.append((p, sidx, ids))
 

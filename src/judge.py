@@ -80,13 +80,15 @@ def main():
     }
 
     from vllm import LLM, SamplingParams
-    from vllm.sampling_params import GuidedDecodingParams
+    # vLLM 0.33 renamed guided-decoding -> structured-outputs.
+    from vllm.sampling_params import StructuredOutputsParams, StructuredOutputsConfig
 
     llm = LLM(model=j["id"], dtype=j["dtype"], quantization=j["quantization"],
               max_model_len=j["max_model_len"], gpu_memory_utilization=j["gpu_memory_utilization"],
-              enforce_eager=j["enforce_eager"], guided_decoding_backend=j["guided_backend"])
+              enforce_eager=j["enforce_eager"],
+              structured_outputs_config=StructuredOutputsConfig(backend=j["guided_backend"]))
     sp = SamplingParams(temperature=j["temperature"], max_tokens=j["max_tokens"],
-                        guided_decoding=GuidedDecodingParams(json=schema))
+                        structured_outputs=StructuredOutputsParams(json=schema))
 
     if args.dry_run:
         out = llm.chat([{"role": "user", "content": "Reply in the required JSON. "

@@ -19,7 +19,7 @@ import os
 
 import numpy as np
 
-from common import gen_hash, load_config, read_jsonl, repo_path
+from common import load_config, read_jsonl, repo_path, responses_path
 
 
 def get_hidden(out):
@@ -85,8 +85,7 @@ def main():
     manifest_path = acts_dir / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"shards": {}}
 
-    rows = list(read_jsonl(repo_path(cfg, cfg["paths"]["data"],
-                                     f"responses.{gen_hash(cfg)}.jsonl"), key="row_id").values())
+    rows = list(read_jsonl(responses_path(cfg), key="row_id").values())
     rows = [r for r in rows if len(r["response_token_ids"]) >= 1]
     rows.sort(key=lambda r: len(r["prompt_token_ids"]) + len(r["response_token_ids"]))  # batch efficiency
     if args.limit:

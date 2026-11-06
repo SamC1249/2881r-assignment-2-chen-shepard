@@ -54,6 +54,24 @@ def gen_hash(cfg: dict) -> str:
     return stable_hash(cfg["target_model"], cfg["generation"], tpl, vllm_version)
 
 
+def responses_path(cfg: dict) -> Path:
+    """Path to the responses file for READERS. Exact gen_hash match preferred; if absent
+    (e.g. local analysis env lacks vllm, so gen_hash differs from the GPU env that wrote
+    the file), fall back to a unique responses.*.jsonl on disk. Ambiguity is an error —
+    never guess between two generations."""
+    exact = repo_path(cfg, cfg["paths"]["data"], f"responses.{gen_hash(cfg)}.jsonl")
+    if exact.exists():
+        return exact
+    found = sorted(exact.parent.glob("responses.*.jsonl"))
+    if len(found) == 1:
+        print(f"[common] WARNING: no responses file for gen_hash={gen_hash(cfg)}; "
+              f"using {found[0].name}")
+        return found[0]
+    raise FileNotFoundError(
+        f"no responses.{gen_hash(cfg)}.jsonl and {len(found)} candidates on disk: "
+        f"{[f.name for f in found]}")
+
+
 def rubric_hash(cfg: dict, mode: str) -> str:
     rubric_file = {
         "sycophancy": "judge_sycophancy.md",

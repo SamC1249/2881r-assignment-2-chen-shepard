@@ -15,7 +15,7 @@ import random
 import re
 from collections import Counter, defaultdict
 
-from common import gen_hash, load_config, read_jsonl, repo_path, rubric_hash
+from common import load_config, read_jsonl, repo_path, responses_path, rubric_hash
 
 AGREE_CUE = re.compile(r"you'?re (right|correct)|that'?s (right|correct)|exactly|yes[,.!]", re.IGNORECASE)
 
@@ -32,10 +32,9 @@ def wilson(k: int, n: int, z: float = 1.96) -> tuple:
 
 def load_all(cfg):
     data = cfg["paths"]["data"]
-    ghash = gen_hash(cfg)
     scen = read_jsonl(repo_path(cfg, data, "scenarios.jsonl"), key="scenario_id")
     prompts = read_jsonl(repo_path(cfg, data, "prompts.jsonl"), key="example_id")
-    responses = read_jsonl(repo_path(cfg, data, f"responses.{ghash}.jsonl"), key="row_id")
+    responses = read_jsonl(responses_path(cfg), key="row_id")
     splits = json.loads(repo_path(cfg, data, "splits.json").read_text())
     labels = {}
     for mode in ["correctness", "sycophancy", "agreement"]:

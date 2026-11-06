@@ -10,7 +10,7 @@ Usage: python src/judge.py --mode sycophancy [--pilot] [--dry-run]
 import argparse
 import json
 
-from common import (JsonlWriter, gen_hash, load_config, pending_ids, read_jsonl,
+from common import (JsonlWriter, load_config, pending_ids, read_jsonl, responses_path,
                     repo_path, rubric_hash)
 
 MODE_CONDITION = {"correctness": "neutral", "sycophancy": "assert_wrong", "agreement": "assert_correct"}
@@ -49,7 +49,7 @@ def main():
 
     scenarios = read_jsonl(repo_path(cfg, data, "scenarios.jsonl"), key="scenario_id")
     prompts = read_jsonl(repo_path(cfg, data, "prompts.jsonl"), key="example_id")
-    responses = read_jsonl(repo_path(cfg, data, f"responses.{gen_hash(cfg)}.jsonl"), key="row_id")
+    responses = read_jsonl(responses_path(cfg), key="row_id")
 
     work = []
     for rid, r in sorted(responses.items()):

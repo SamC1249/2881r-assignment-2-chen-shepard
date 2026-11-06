@@ -1,0 +1,171 @@
+{
+ "dev_overall": {
+  "n": 359,
+  "syc": 78,
+  "rate": 0.2173,
+  "ci95": [
+   0.1777,
+   0.2628
+  ]
+ },
+ "by_level": {
+  "1": {
+   "n": 77,
+   "syc": 4,
+   "rate": 0.0519,
+   "ci95": [
+    0.0204,
+    0.1261
+   ]
+  },
+  "2": {
+   "n": 72,
+   "syc": 13,
+   "rate": 0.1806,
+   "ci95": [
+    0.1087,
+    0.2848
+   ]
+  },
+  "3": {
+   "n": 72,
+   "syc": 17,
+   "rate": 0.2361,
+   "ci95": [
+    0.153,
+    0.346
+   ]
+  },
+  "4": {
+   "n": 68,
+   "syc": 10,
+   "rate": 0.1471,
+   "ci95": [
+    0.0819,
+    0.25
+   ]
+  },
+  "5": {
+   "n": 70,
+   "syc": 34,
+   "rate": 0.4857,
+   "ci95": [
+    0.3725,
+    0.6005
+   ]
+  }
+ },
+ "by_domain": {
+  "high_school_biology": {
+   "n": 46,
+   "syc": 11,
+   "rate": 0.2391,
+   "ci95": [
+    0.1391,
+    0.3794
+   ]
+  },
+  "high_school_chemistry": {
+   "n": 50,
+   "syc": 14,
+   "rate": 0.28,
+   "ci95": [
+    0.1747,
+    0.4167
+   ]
+  },
+  "high_school_geography": {
+   "n": 40,
+   "syc": 8,
+   "rate": 0.2,
+   "ci95": [
+    0.105,
+    0.3476
+   ]
+  },
+  "human_aging": {
+   "n": 39,
+   "syc": 14,
+   "rate": 0.359,
+   "ci95": [
+    0.2274,
+    0.5158
+   ]
+  },
+  "miscellaneous": {
+   "n": 73,
+   "syc": 8,
+   "rate": 0.1096,
+   "ci95": [
+    0.0566,
+    0.2016
+   ]
+  },
+  "nutrition": {
+   "n": 42,
+   "syc": 11,
+   "rate": 0.2619,
+   "ci95": [
+    0.153,
+    0.4107
+   ]
+  },
+  "world_religions": {
+   "n": 69,
+   "syc": 12,
+   "rate": 0.1739,
+   "ci95": [
+    0.1024,
+    0.2798
+   ]
+  }
+ },
+ "ambiguous_rate": {
+  "overall": 0.0028,
+  "by_level": {
+   "1": 0.0,
+   "2": 0.0137,
+   "3": 0.0,
+   "4": 0.0,
+   "5": 0.0
+  }
+ },
+ "truncation_rate": 0.0194,
+ "label_counts_per_split": {
+  "train": {
+   "SYCOPHANTIC": 52,
+   "NOT_SYCOPHANTIC": 217,
+   "AMBIGUOUS": 1
+  },
+  "val": {
+   "NOT_SYCOPHANTIC": 64,
+   "SYCOPHANTIC": 26
+  },
+  "test": {
+   "NOT_SYCOPHANTIC": 143,
+   "SYCOPHANTIC": 38
+  }
+ },
+ "test_slice_counts": {
+  "heldout_domain": {
+   "NOT_SYCOPHANTIC": 61,
+   "SYCOPHANTIC": 13
+  },
+  "heldout_phrasing": {
+   "NOT_SYCOPHANTIC": 18,
+   "SYCOPHANTIC": 2
+  }
+ },
+ "min_per_class_rule": 15,
+ "level_trend": {
+  "logit_coef_per_level": 0.5274,
+  "ci95": [
+   0.3389,
+   0.7264
+  ]
+ },
+ "assert_correct_agreement": {
+  "n": 360,
+  "agree_rate": 0.8889
+ }
+}

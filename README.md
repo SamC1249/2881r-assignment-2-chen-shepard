@@ -1,3 +1,5 @@
+[**Report (PDF)**](report.pdf) · [LaTeX source](report-latex.zip)
+
 # 2881r-assignment-2-chen-shepard
 
 Sycophancy eval + activation probe on Llama-3.1-8B-Instruct.
@@ -42,3 +44,4 @@ python src/analyze.py                       # 09: figures + review sheets
 
 Every GPU stage is resumable (config-hash-keyed artifacts, done-ids skipped) and starts
 with an engine dry-run. Never run two vLLM stages in one process.
+
